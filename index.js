@@ -1,53 +1,18 @@
 const { declare } = require("@babel/helper-plugin-utils");
 const { addDefault } = require("@babel/helper-module-imports");
 
+const isItReactLazy = require("./isItReactLazy");
+const getImportName = require("./getImportName");
+const getImportSource = require("./getImportSource");
+
 module.exports = declare((api) => {
   api.assertVersion(7);
-
-  const isItReactLazy = (path) =>
-    path.get("object").isIdentifier({ name: "React" }) &&
-    path.get("property").isIdentifier({ name: "lazy" });
-
-  const isItJustLazy = (path) =>
-    path.get("callee").isIdentifier({ name: "lazy" });
-
-  const getImportName = (path) => {
-    let importName;
-
-    path.traverse({
-      VariableDeclarator(path) {
-        importName = path.node.id.name;
-        path.stop();
-      },
-    });
-
-    return importName;
-  };
-
-  const getImportSource = (path) => {
-    let importSource;
-
-    path.traverse({
-      Import(path) {
-        const importString = path.parentPath.get("arguments.0");
-
-        if (!importString.isStringLiteral()) {
-          return;
-        }
-
-        importSource = importString.node.value;
-        path.stop();
-      },
-    });
-
-    return importSource;
-  };
 
   return {
     name: "transform-react-lazy",
     visitor: {
-      "MemberExpression|CallExpression": (path) => {
-        if (!isItReactLazy(path) && !isItJustLazy(path)) {
+      CallExpression: (path) => {
+        if (!isItReactLazy(path)) {
           return;
         }
 
