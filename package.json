@@ -6,9 +6,20 @@
   "scripts": {
     "test": "jest"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mixail-novikov/babel-plugin-transform-react-lazy.git"
+  },
+  "keywords": [
+    "react",
+    "babel-plugin"
+  ],
   "author": "Mikhail Novikov",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mixail-novikov/babel-plugin-transform-react-lazy/issues"
+  },
+  "homepage": "https://github.com/mixail-novikov/babel-plugin-transform-react-lazy#readme",
   "dependencies": {
     "@babel/helper-module-imports": "^7.10.4",
     "@babel/helper-plugin-utils": "^7.10.4"
