@@ -1,5 +1,7 @@
 # Description
 
+Restoring Fast Refresh when using `React.lazy`
+
 ## Problem
 
 [Fast Refresh](https://reactnative.dev/docs/fast-refresh) can't properly handle `React.lazy`.
@@ -18,15 +20,6 @@ Replace dynamic imports to the regular imports
 - use only in development environment 
 - import source must be a regular string
 
-### Examples
-
-```javascript
-const LazyComponent = React.lazy(() => import("./LazyComponent"));
-```
-
-```javascript
-const LazyComponent = lazy(() => import("./LazyComponent"));
-```
 
 # Usage with [CRA](https://create-react-app.dev/) and [customize-cra](https://github.com/arackaf/customize-cra#readme)
 
