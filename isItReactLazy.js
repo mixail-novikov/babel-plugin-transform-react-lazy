@@ -1,3 +1,6 @@
+// NOTICE
+// Copy pasted from babel-plugin-transform-react-pure-annotations
+
 const { types: t } = require("@babel/core");
 
 const PURE_CALLS = new Map([["react", ["lazy"]]]);
@@ -17,10 +20,6 @@ const isItReactLazy = (path) => {
     return false;
   }
 
-  // Otherwise, check if the member expression's object matches
-  // a default import (`import React from 'react'`) or namespace
-  // import (`import * as React from 'react'), and check if the
-  // property matches one of the pure methods.
   for (const [module, methods] of PURE_CALLS) {
     const object = path.get("callee.object");
     if (
