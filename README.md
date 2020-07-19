@@ -8,9 +8,14 @@
 
 Replace dynamic imports to the regular imports
 
+## Benefits
+
+- restored developer experience with Fast Refresh
+- can catch syntax errors instantly(in comparison, using "dynamic import" the code executes only when it loaded)
+
 ## Caveats
 
-- only handles `React.lazy` and `lazy` calls
+- use only in development environment 
 - import source must be a regular string
 
 ### Examples
